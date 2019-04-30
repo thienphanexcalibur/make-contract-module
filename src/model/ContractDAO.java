@@ -1,7 +1,7 @@
 package model;
 import model.*;
 
-public class ContractDAO {
+public class ContractDAO extends BaseDAO {
 
 	public ContractDAO() {
 		// TODO - implement ContractDAO.ContractDAO

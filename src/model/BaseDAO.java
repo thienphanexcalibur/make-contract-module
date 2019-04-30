@@ -18,7 +18,8 @@ import java.sql.Statement;
 public class BaseDAO {
 
 
-    BaseDAO() {
+    public BaseDAO() {
+        
     }
 
     Statement getStatement() throws SQLException {
