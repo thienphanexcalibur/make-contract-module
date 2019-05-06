@@ -4,41 +4,86 @@
  * and open the template in the editor.
  */
 package controller;
+
 import java.sql.SQLException;
 import view.MakeContractFrm;
-import model.BaseDAO;
 import model.ClientDAO;
+import model.ContractDAO;
+import model.DepositBuilder;
+import model.CollateralBuilder;
 import model.Client;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.Collateral;
+import javax.swing.DefaultListModel;
+import model.Vehicle;
 
 /**
  *
  * @author justj
  */
 public class MakeContractCtr {
-       private MakeContractFrm mMakeContractFrm;
-       private int selectedClientID;
-       public MakeContractCtr(MakeContractFrm makeContractFrm) {
-           mMakeContractFrm = makeContractFrm;
-           mounted();
-           fetchData();
-       }
-       
-       
-       private void mounted() {
-            selectedClientID = mMakeContractFrm.clientID;
-       }  
-       
-       private void fetchData() {
-           try {
-                Client client = new ClientDAO().getClient(selectedClientID);
-                mMakeContractFrm.labelfullname.setText(client.getName());
-                mMakeContractFrm.labeldob.setText(client.getBirthday());
-                mMakeContractFrm.labelphone.setText(client.getPhone());
-                mMakeContractFrm.labelEmail.setText(client.getEmail());
-                mMakeContractFrm.labeldescription.setText(client.getDescription());
-           } catch (SQLException e) {
-               System.out.println(e);
-           }
-       }
+
+    private MakeContractFrm mMakeContractFrm;
+    private int selectedClientID;
+
+    public MakeContractCtr(MakeContractFrm makeContractFrm) {
+        mMakeContractFrm = makeContractFrm;
+        mounted();
+        fetchData();
+    }
+
+    private void mounted() {
+        selectedClientID = mMakeContractFrm.clientID;
+
+        mMakeContractFrm.btnDone.addActionListener(e -> {
+            String startDate = mMakeContractFrm.inputStartDate.getText();
+            String endDate = mMakeContractFrm.inputEndDate.getText();
+            String collateralName = mMakeContractFrm.inputColatName.getText();
+            float collateralValue = Float.parseFloat(mMakeContractFrm.inputColatValue.getText());
+            float depositAmount = Float.parseFloat(mMakeContractFrm.inputDepositAmount.getText());
+            int vehicleID = Integer.parseInt(mMakeContractFrm.JListVehicles.getSelectedValue().substring(0, 1));
+
+            System.out.println(vehicleID);
+            DepositBuilder depositBuilder = new DepositBuilder();
+            depositBuilder.setAmount(depositAmount);
+
+            CollateralBuilder collateralBuilder = new CollateralBuilder();
+            collateralBuilder.setName(collateralName).setValue(collateralValue);
+
+            int createContract = new ContractDAO().createContract(selectedClientID, startDate, endDate, collateralBuilder.buildCollateral(), depositBuilder.buildDeposit(), vehicleID);
+            if (createContract == 1) {
+                JOptionPane.showMessageDialog(mMakeContractFrm, "Make Contract Success!!!!!!!");
+                mMakeContractFrm.dispose();
+            } else {
+                JOptionPane.showMessageDialog(mMakeContractFrm, "Database Error, please try again :)");
+            }
+        });
+
+    }
+
+    private void fetchVehicles() throws SQLException {
+        ArrayList<Vehicle> listVehicles = new ContractDAO().getVehicles();
+        DefaultListModel<String> lv = new DefaultListModel<>();
+        for (int i = 0; i <= listVehicles.size() - 1; i++) {
+            lv.add(i, listVehicles.get(i).getID() + ". " + listVehicles.get(i).getName());
+            System.out.println(listVehicles.get(i).getName());
+        }
+        mMakeContractFrm.JListVehicles.setModel(lv);
+    }
+
+    private void fetchData() {
+        try {
+            Client client = new ClientDAO().getClient(selectedClientID);
+            mMakeContractFrm.labelfullname.setText(client.getName());
+            mMakeContractFrm.labeldob.setText(client.getBirthday());
+            mMakeContractFrm.labelphone.setText(client.getPhone());
+            mMakeContractFrm.labelEmail.setText(client.getEmail());
+            mMakeContractFrm.labeldescription.setText(client.getDescription());
+            fetchVehicles();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 }

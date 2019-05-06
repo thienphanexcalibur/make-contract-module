@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/justj/Documents/NetBeansProjects/CarRentalMakeContract/src/model/ClientDAO.java</file>
             <file>file:/C:/Users/justj/Documents/NetBeansProjects/CarRentalMakeContract/src/controller/ManageClientCtr.java</file>
-            <file>file:/C:/Users/justj/Documents/NetBeansProjects/CarRentalMakeContract/src/view/ManageClientFrm.java</file>
+            <file>file:/C:/Users/justj/Documents/NetBeansProjects/CarRentalMakeContract/src/model/Client.java</file>
+            <file>file:/C:/Users/justj/Documents/NetBeansProjects/CarRentalMakeContract/src/controller/MakeContractCtr.java</file>
         </group>
     </open-files>
 </project-private>

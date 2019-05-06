@@ -4,20 +4,26 @@ import java.util.*;
 
 public class Contract {
 
-	Collection<Bill> bills;
-	RentVehicle rentVehicle;
-	private Date startContractDate;
-	private Date finishContractDate;
-	Deposit[] deposit;
-	Client[] client;
-	Vehicle[] vehicle;
-	private Collateral[] collateral;
-	private String start_date;
-	private String finish_date;
+    int clientID;
+    String startDate;
+    String finishDate;
 
-	public Contract() {
-		// TODO - implement Contract.Contract
-		throw new UnsupportedOperationException();
-	}
+    public Contract(int clientID, String startDate, String finishDate) {
+        this.clientID = clientID;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+    }
+
+    public int getClientID() {
+        return this.clientID;
+    }
+
+    public String getStartDate() {
+        return this.startDate;
+    }
+
+    public String getFinishDate() {
+        return this.finishDate;
+    }
 
 }
