@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import model.Client;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Client;
 
 public class ClientDAO extends BaseDAO {
 
@@ -20,9 +21,8 @@ public class ClientDAO extends BaseDAO {
         String sql = "SELECT * from client";
         Statement statement = getStatement();
         ResultSet rs = statement.executeQuery(sql);
-
         while (rs.next()) {
-            clients.add(new Client(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+            clients.add(new Client(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7)));
         }
         rs.close();
         cleanEnvironment(statement, null);
@@ -31,13 +31,15 @@ public class ClientDAO extends BaseDAO {
 
     public Client getClient(int clientID) throws SQLException {
         Client client = null;
+        // Select all clients
         String sql = "SELECT * from client WHERE id=?";
         PreparedStatement ps = getPreparedStatement(sql);
         ps.setInt(1, clientID);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            client = new Client(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(9));
+            client = new Client(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
         }
+
         rs.close();
         cleanEnvironment(null, ps);
         return client;

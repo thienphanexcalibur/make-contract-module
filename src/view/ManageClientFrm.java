@@ -4,13 +4,17 @@
  * and open the template in the editor.
  */
 package view;
+
 import controller.ManageClientCtr;
+
 /**
  *
  * @author justj
  */
 public class ManageClientFrm extends javax.swing.JFrame {
-     ManageClientCtr controller;
+
+    ManageClientCtr controller;
+
     /**
      * Creates new form ManageClientFrm
      */
@@ -33,14 +37,11 @@ public class ManageClientFrm extends javax.swing.JFrame {
         btnMakeContract = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientTable = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btnDeleteClient = new javax.swing.JButton();
-        btnAddClient = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btnShowContract = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -76,11 +77,11 @@ public class ManageClientFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Fullname", "DoB", "Email", "Phone", "Deposit", "Rented Vehicles", "Collateral"
+                "Client ID", "Full Name", "Date of Birth", "Personal Email", "Mobile Phone (+84)", "Contract Number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,16 +90,10 @@ public class ManageClientFrm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(clientTable);
 
-        jScrollPane2.setViewportView(jTextPane1);
-
-        jButton1.setText("Search");
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Car Rental Management");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setIconTextGap(0);
-
-        jLabel2.setText("Search Client:");
 
         btnDeleteClient.setText("Delete Client");
         btnDeleteClient.addActionListener(new java.awt.event.ActionListener() {
@@ -107,10 +102,22 @@ public class ManageClientFrm extends javax.swing.JFrame {
             }
         });
 
-        btnAddClient.setText("Add Client");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Client Management");
+
+        btnShowContract.setText("Show Contract");
+        btnShowContract.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowContractActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,23 +128,19 @@ public class ManageClientFrm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnDeleteClient)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAddClient)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnMakeContract))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))
-                            .addComponent(jLabel3))
-                        .addGap(0, 602, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(0, 974, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnDeleteClient)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnShowContract)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefresh)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMakeContract)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,21 +148,16 @@ public class ManageClientFrm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(83, 83, 83)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDeleteClient)
-                    .addComponent(btnAddClient)
-                    .addComponent(btnMakeContract))
+                    .addComponent(btnMakeContract)
+                    .addComponent(btnShowContract)
+                    .addComponent(btnRefresh))
                 .addContainerGap())
         );
 
@@ -169,7 +167,7 @@ public class ManageClientFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMakeContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeContractActionPerformed
-     
+
     }//GEN-LAST:event_btnMakeContractActionPerformed
 
     private void btnDeleteClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteClientActionPerformed
@@ -180,6 +178,17 @@ public class ManageClientFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMakeContractMouseClicked
 
+    private void btnShowContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowContractActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnShowContractActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        ManageClientFrm newFrm = new ManageClientFrm();
+        newFrm.setVisible(true);
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,7 +196,7 @@ public class ManageClientFrm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -216,18 +225,15 @@ public class ManageClientFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAddClient;
     public javax.swing.JButton btnDeleteClient;
     public javax.swing.JButton btnMakeContract;
+    public javax.swing.JButton btnRefresh;
+    public javax.swing.JButton btnShowContract;
     public javax.swing.JTable clientTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,12 +7,13 @@ package controller;
 
 import java.sql.SQLException;
 import view.MakeContractFrm;
-import model.ClientDAO;
-import model.ContractDAO;
+import view.ManageClientFrm;
 import model.DepositBuilder;
 import model.CollateralBuilder;
 import model.Client;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Collateral;
 import javax.swing.DefaultListModel;
@@ -51,12 +52,23 @@ public class MakeContractCtr {
             CollateralBuilder collateralBuilder = new CollateralBuilder();
             collateralBuilder.setName(collateralName).setValue(collateralValue);
 
-            int createContract = new ContractDAO().createContract(selectedClientID, startDate, endDate, collateralBuilder.buildCollateral(), depositBuilder.buildDeposit(), vehicleID);
-            if (createContract == 1) {
-                JOptionPane.showMessageDialog(mMakeContractFrm, "Make Contract Success!!!!!!!");
-                mMakeContractFrm.dispose();
+            // Test case :)
+            if (depositAmount <= 0) {
+                JOptionPane.showMessageDialog(mMakeContractFrm, "Deposit must be above zero");
+            } else if (collateralName.isEmpty()) {
+                JOptionPane.showMessageDialog(mMakeContractFrm, "Collateral must be included");
+            } else if (collateralValue <= 0) {
+                JOptionPane.showMessageDialog(mMakeContractFrm, "Collateral value must be above zero");
             } else {
-                JOptionPane.showMessageDialog(mMakeContractFrm, "Database Error, please try again :)");
+                // Start inject to DB
+                int createContract = new ContractDAO().createContract(selectedClientID, startDate, endDate, collateralBuilder.buildCollateral(), depositBuilder.buildDeposit(), vehicleID);
+
+                if (createContract == 1) {
+                    JOptionPane.showMessageDialog(mMakeContractFrm, "Make Contract Success!!!!!!!");
+                    mMakeContractFrm.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(mMakeContractFrm, "Database Error, please try again :)");
+                }
             }
         });
 
@@ -79,7 +91,6 @@ public class MakeContractCtr {
             mMakeContractFrm.labeldob.setText(client.getBirthday());
             mMakeContractFrm.labelphone.setText(client.getPhone());
             mMakeContractFrm.labelEmail.setText(client.getEmail());
-            mMakeContractFrm.labeldescription.setText(client.getDescription());
             fetchVehicles();
 
         } catch (SQLException e) {

@@ -9,71 +9,71 @@ public class Client {
     private String email;
     private String phone;
     private String description;
+    private int contractID;
 
-    public Client(int ID, String name, String birthday, String idCardNumber, String email, String phone, String description) {
+    public Client(int ID, String name, String birthday, String idCardNumber, String email, String phone, int contractID) {
         this.ID = ID;
         this.name = name;
         this.birthday = birthday;
         this.idCardNumber = idCardNumber;
         this.email = email;
         this.phone = phone;
-        this.description = description;
+        this.contractID = contractID;
+    }
+
+    public int getContractID() {
+        return contractID;
+    }
+
+    public void setContractID(int contractID) {
+        this.contractID = contractID;
     }
 
     public int getID() {
-        return this.ID;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getBirthday() {
-        return this.birthday;
-    }
-
-    public String getCardNumber() {
-        return this.idCardNumber;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getPhone() {
-        return this.phone;
-    }
-
-    public String getDescription() {
-        return this.description;
+        return ID;
     }
 
     public void setID(int ID) {
         this.ID = ID;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBirthday() {
+        return birthday;
     }
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
+    public String getIdCardNumber() {
+        return idCardNumber;
+    }
+
     public void setIdCardNumber(String idCardNumber) {
         this.idCardNumber = idCardNumber;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 }

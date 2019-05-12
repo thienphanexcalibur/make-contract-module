@@ -6,15 +6,14 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import model.ClientDAO;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import model.Client;
 import view.ManageClientFrm;
 import view.MakeContractFrm;
-import view.AddClientFrm;
+import view.ShowContractFrm;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,10 +25,11 @@ public class ManageClientCtr {
 
     private ManageClientFrm mManageClientFrm;
     private MakeContractFrm mMakeContractFrm;
-    private AddClientFrm mAddClientFrm;
+    private ShowContractFrm mAddClientFrm;
 
     private DefaultTableModel mClientTable;
     private int selectedClientID = 0;
+    public Boolean firstMounted = true;
 
     public ManageClientCtr(ManageClientFrm manageClientFrm) {
         mManageClientFrm = manageClientFrm;
@@ -38,14 +38,13 @@ public class ManageClientCtr {
         fetchData();
     }
 
-    ;
-
     /**
      * Add row on client table
+     *
      * @param client
      */
     private void addRow(Client client) {
-        mClientTable.addRow(new Object[]{client.getID(), client.getName(), client.getBirthday(), client.getEmail(), client.getPhone()});
+        mClientTable.addRow(new Object[]{client.getID(), client.getName(), client.getBirthday(), client.getEmail(), client.getPhone(), client.getContractID()});
     }
 
     /**
@@ -65,10 +64,12 @@ public class ManageClientCtr {
                 mMakeContractFrm.setVisible(true);
             }
         });
-        mAddClientFrm = new AddClientFrm();
+        mAddClientFrm = new ShowContractFrm();
 
-        mManageClientFrm.btnAddClient.addActionListener(e -> {
-
+//        mManageClientFrm.btnRefresh.addActionListener(e -> {
+//
+//        });
+        mManageClientFrm.btnShowContract.addActionListener(e -> {
             mAddClientFrm.setLocationRelativeTo(null);
             mAddClientFrm.setVisible(true);
         });
@@ -86,7 +87,6 @@ public class ManageClientCtr {
                     ex.printStackTrace();
                 }
             }
-            fetchData();
         });
     }
 

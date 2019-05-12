@@ -1,10 +1,13 @@
-package model;
+package controller;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import model.Collateral;
+import model.Deposit;
+import model.Vehicle;
 
 public class ContractDAO extends BaseDAO {
 
@@ -26,6 +29,7 @@ public class ContractDAO extends BaseDAO {
         String collateralQuery = "INSERT INTO collateral(ContractID, Name, Value) VALUES (?, ?, ?);";
         String depositQuery = "INSERT INTO deposit(ContractID, amount) VALUES (?, ?)";
         String rentVehicleQuery = "INSERT INTO rentvehicle(ContractID, VehicleID, ClientID) VALUES (?,?,?)";
+        String clientContractQuery = "UPDATE client SET ContractID=? WHERE client.id=" + clientID;
 
         try {
             PreparedStatement ps = getPreparedStatement(contractQuery);
@@ -54,6 +58,10 @@ public class ContractDAO extends BaseDAO {
                     ps3.setInt(2, vehicleID);
                     ps3.setInt(3, clientID);
                     ps3.executeUpdate();
+
+                    PreparedStatement ps4 = getPreparedStatement(clientContractQuery);
+                    ps4.setInt(1, key);
+                    ps4.executeUpdate();
 
                     generatedKey.close();
                     return 1;

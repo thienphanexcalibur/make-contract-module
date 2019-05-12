@@ -61,11 +61,8 @@ public class MakeContractFrm extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        labeldescription = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         labelfullname = new javax.swing.JLabel();
-        btnReset = new javax.swing.JButton();
         btnDone = new javax.swing.JButton();
         inputColatValue = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -75,7 +72,7 @@ public class MakeContractFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Phone:");
+        jLabel1.setText("Mobile Phone:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Contract Due:");
@@ -125,10 +122,10 @@ public class MakeContractFrm extends javax.swing.JFrame {
         labelphone.setText("jLabel9");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText("Email:");
+        jLabel10.setText("Personal Email:");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel11.setText("Date of birth");
+        jLabel11.setText("Date of Birth");
 
         labelEmail.setText("jLabel12");
 
@@ -143,17 +140,10 @@ public class MakeContractFrm extends javax.swing.JFrame {
         jLabel15.setText("Client Information");
         jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel17.setText("Description");
-
-        labeldescription.setText("jLabel18");
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel9.setText("Fullname");
+        jLabel9.setText("Full Name:");
 
         labelfullname.setText("jLabel12");
-
-        btnReset.setText("Reset");
 
         btnDone.setText("Done");
 
@@ -187,11 +177,9 @@ public class MakeContractFrm extends javax.swing.JFrame {
                                             .addComponent(jLabel10)
                                             .addComponent(jLabel11)
                                             .addComponent(jLabel1)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel17))
+                                            .addComponent(jLabel9))
                                         .addGap(43, 43, 43)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labeldescription)
                                             .addComponent(labelphone)
                                             .addComponent(labeldob)
                                             .addComponent(labelEmail)
@@ -219,8 +207,7 @@ public class MakeContractFrm extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(btnReset))
+                                                        .addGap(0, 0, Short.MAX_VALUE))
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                             .addComponent(jLabel18)
@@ -269,11 +256,7 @@ public class MakeContractFrm extends javax.swing.JFrame {
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel1)))
                             .addComponent(labelphone))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(labeldescription))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,9 +287,7 @@ public class MakeContractFrm extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnReset)
-                            .addComponent(btnDone))))
+                        .addComponent(btnDone)))
                 .addContainerGap())
         );
 
@@ -363,7 +344,6 @@ public class MakeContractFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JList<String> JListVehicles;
     public javax.swing.JButton btnDone;
-    public javax.swing.JButton btnReset;
     public javax.swing.JTextField inputColatName;
     public javax.swing.JTextField inputColatValue;
     public javax.swing.JTextField inputDepositAmount;
@@ -377,7 +357,6 @@ public class MakeContractFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -390,7 +369,6 @@ public class MakeContractFrm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel labelEmail;
-    public javax.swing.JLabel labeldescription;
     public javax.swing.JLabel labeldob;
     public javax.swing.JLabel labelfullname;
     public javax.swing.JLabel labelphone;
