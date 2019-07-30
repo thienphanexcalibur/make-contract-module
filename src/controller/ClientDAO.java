@@ -17,7 +17,6 @@ public class ClientDAO extends BaseDAO {
 
     public ArrayList<Client> getClients() throws SQLException {
         ArrayList<Client> clients = new ArrayList<>();
-
         String sql = "SELECT * from client";
         Statement statement = getStatement();
         ResultSet rs = statement.executeQuery(sql);
